@@ -1,6 +1,22 @@
 <template>
     <app-layout title="Dashboard">
-        <Create />
+
+         <div class="py-12">
+                <h1 class="text-2xl font-bold ml-4 mb-8 text-white">Profile</h1>
+            <div class="max-w-7xl mx-auto sm:px-2 lg:px-4 flex justify-between">
+                <div class="flex">
+                    <img class="inline-block h-10 w-10 rounded-full mr-4" :src="'../storage/profile-photos/7SvZfYoz8bjGBndL0BM463IWZzWi3100EQzF4cvn.png'" alt="" />
+                    <div class="flex flex-col">
+                        <div class="text-white font-bold">{{user.name}}</div>
+                        <div class="text-white">{{user.email}}</div>
+                    </div>
+                </div>
+                <div >
+                    <button class="rounded-full mr-4 border-2 border-blue-600 px-4 py-2 font-bold text-blue-600 hover:text-white hover:bg-blue-600">Suivre</button>
+                </div>
+            </div>
+            <hr class="border-gray-600 mt-8">
+         </div>
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-2 lg:px-4" v-for="tweet in tweets" v-bind:key="tweet.id">
                 <div class="overflow-hidden shadow-xl sm:rounded-lg">
@@ -11,11 +27,11 @@
                 <a href="#" class="flex-shrink-0 group block">
                   <div class="flex items-center">
                     <div>
-                      <img class="inline-block h-10 w-10 rounded-full" :src="$page.props.user.profile_photo_url" alt="" />
+                      <img class="inline-block h-10 w-10 rounded-full" :src="tweet.user.profile_photo_path" alt="" />
                     </div>
                     <div class="ml-3">
                       <p class="text-base leading-6 font-medium text-white">
-                        <a class="hover:underline mr-4" :href="'/profil/'+tweet.user.id">{{tweet.user.name}}</a>
+                        {{tweet.user.name}}
                         <span class="text-sm leading-5 font-medium text-gray-400 group-hover:text-gray-300 transition ease-in-out duration-150">
                             {{tweet.user.email}} . {{parseDate(tweet.created_at)}}
                           </span>
@@ -89,16 +105,15 @@
     import { defineComponent } from 'vue'
     import AppLayout from '@/Layouts/AppLayout.vue'
     import Welcome from '@/Jetstream/Welcome.vue'
-    import Create from '../Pages/Create.vue'
 
     export default defineComponent({
         components: {
             AppLayout,
             Welcome,
-            Create
         },
         props: {
             tweets: Array,
+            user: Object
         },
         methods: {
             parseDate(ISOdate) {
@@ -118,6 +133,6 @@
 
                 return  day+"/"+month+"/"+year+" "+hour+":"+min+":"+sec
             },
-        }
+        },
     })
 </script>
