@@ -2,6 +2,7 @@
     <div class="flex">
         <div class="flex-1 m-2">
             <h2 class="px-4 py-2 text-xl font-semibold text-white">Home</h2>
+            {{$page.props.csrf_token}}
         </div>
         <div class="flex-1 px-4 py-2 m-2">
             <a href=""
@@ -68,6 +69,7 @@ export default {
             const form = useForm({
             content: null,
             avatar: null,
+            //token: this.$page.props.csrf_token,
             })
 
             function submit() {

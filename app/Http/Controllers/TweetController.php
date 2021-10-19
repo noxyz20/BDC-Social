@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use Image;
+use Throwable;
 use App\Models\Tweet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File; 
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\File; 
-use Image;
 
 class TweetController extends Controller
 {
     public function create(Request $request)
     {
-
+        dd($request);
         $request->validate([
             'content' => 'required|max:250',
             'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',

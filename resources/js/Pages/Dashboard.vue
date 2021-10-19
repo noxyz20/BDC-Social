@@ -16,13 +16,13 @@
                 <a href="#" class="flex-shrink-0 group block">
                   <div class="flex items-center">
                     <div>
-                      <img class="inline-block h-10 w-10 rounded-full" src="https://pbs.twimg.com/profile_images/1121328878142853120/e-rpjoJi_bigger.png" alt="" />
+                      <img class="inline-block h-10 w-10 rounded-full" :src="$page.props.user.profile_photo_url" alt="" />
                     </div>
                     <div class="ml-3">
                       <p class="text-base leading-6 font-medium text-white">
                         {{tweet.user.name}}
                         <span class="text-sm leading-5 font-medium text-gray-400 group-hover:text-gray-300 transition ease-in-out duration-150">
-                            {{tweet.user.email}} . {{tweet.created_at}}
+                            {{tweet.user.email}} . {{parseDate(tweet.created_at)}}
                           </span>
                            </p>
                     </div>
@@ -102,6 +102,25 @@
         },
         props: {
             tweets: Array,
+        },
+        methods: {
+            parseDate(ISOdate) {
+                var date = new Date(ISOdate);
+                var year = date.getFullYear();
+                var month = date.getMonth()+1;
+                if(month < 10) month = "0"+month;
+                var day = date.getDate();
+                if(day < 10) day = "0"+day;
+                var hour = date.getHours();
+                if(hour < 10) hour = "0"+hour;
+                var min = date.getMinutes();
+                if(min < 10) min = "0"+min;
+                var sec = date.getSeconds();
+                if(sec < 10) sec = "0"+sec;
+
+
+                return  day+"/"+month+"/"+year+" "+hour+":"+min+":"+sec
+            },
         }
     })
 </script>
