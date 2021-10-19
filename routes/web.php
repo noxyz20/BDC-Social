@@ -18,12 +18,7 @@ use App\Http\Controllers\TweetController;
 */
 
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
+    return view('home');
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
