@@ -14,8 +14,7 @@ use Illuminate\Support\Facades\Redirect;
 class TweetController extends Controller
 {
     public function create(Request $request)
-    {
-        dd($request);
+    {;
         $request->validate([
             'content' => 'required|max:250',
             'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
