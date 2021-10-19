@@ -47,7 +47,7 @@
             <div class="w-3/5 border border-gray-600 h-auto  border-t-0">
                 <!--middle wall-->
              
-                <Create />
+                
 
                 
             <div>
